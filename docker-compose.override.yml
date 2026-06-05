@@ -7,7 +7,7 @@ services:
 
   postgres:
     volumes:
-      - ./data/postgres:/var/lib/postgresql
+      - netbox-lab-postgres:/var/lib/postgresql
 
   redis:
     command:
@@ -24,3 +24,7 @@ services:
       - valkey-server --requirepass $$REDIS_PASSWORD --save ""
     volumes:
       - ./data/redis-cache:/data
+
+volumes:
+  netbox-lab-postgres:
+    driver: local
