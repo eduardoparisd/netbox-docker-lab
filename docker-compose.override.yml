@@ -5,6 +5,12 @@ services:
       - ./data/reports:/opt/netbox/netbox/reports:rw
       - ./data/scripts:/opt/netbox/netbox/scripts:rw
 
+  netbox-worker:
+    volumes:
+      - ./data/media:/opt/netbox/netbox/media:rw
+      - ./data/reports:/opt/netbox/netbox/reports:rw
+      - ./data/scripts:/opt/netbox/netbox/scripts:rw
+
   postgres:
     volumes:
       - netbox-lab-postgres:/var/lib/postgresql
