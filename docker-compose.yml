@@ -14,9 +14,7 @@ services:
       interval: 15s
     volumes:
       - ./configuration:/etc/netbox/config:z,ro
-      - netbox-media-files:/opt/netbox/netbox/media:rw
-      - netbox-reports-files:/opt/netbox/netbox/reports:rw
-      - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
+
   netbox-worker:
     <<: *netbox
     depends_on:
@@ -42,8 +40,7 @@ services:
       interval: 10s
       retries: 5
     env_file: env/postgres.env
-    volumes:
-      - netbox-postgres:/var/lib/postgresql
+    
 
   # redis
   redis:
@@ -59,8 +56,7 @@ services:
       interval: 1s
       retries: 5
     env_file: env/redis.env
-    volumes:
-      - netbox-redis-data:/data
+   
   redis-cache:
     image: docker.io/valkey/valkey:9.0-alpine
     command:
@@ -69,19 +65,4 @@ services:
       - valkey-server --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose
     healthcheck: *redis-healthcheck
     env_file: env/redis-cache.env
-    volumes:
-      - netbox-redis-cache-data:/data
-
-volumes:
-  netbox-media-files:
-    driver: local
-  netbox-postgres:
-    driver: local
-  netbox-redis-cache-data:
-    driver: local
-  netbox-redis-data:
-    driver: local
-  netbox-reports-files:
-    driver: local
-  netbox-scripts-files:
-    driver: local
+    

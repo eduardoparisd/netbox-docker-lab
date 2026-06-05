@@ -1,0 +1,20 @@
+services:
+    netbox:
+        volumes:
+            - ./data/media:/opt/netbox/netbox/media:rw
+            - ./data/reports:/opt/netbox/netbox/reports:rw
+            - ./data/scripts:/opt/netbox/netbox/scripts:rw
+
+    postgres:
+        volumes:
+            - ./data/postgres:/var/lib/postgresql/data
+
+    redis:
+        volumes:
+            - ./data/redis:/data
+
+    redis-cache:
+        volumes:
+            - ./data/redis-cache:/data
+
+  
