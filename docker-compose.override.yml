@@ -1,12 +1,14 @@
 services:
   netbox:
     volumes:
+      - ./configuration:/etc/netbox/config:ro
       - ./data/media:/opt/netbox/netbox/media:rw
       - ./data/reports:/opt/netbox/netbox/reports:rw
       - ./data/scripts:/opt/netbox/netbox/scripts:rw
 
   netbox-worker:
     volumes:
+      - ./configuration:/etc/netbox/config:ro
       - ./data/media:/opt/netbox/netbox/media:rw
       - ./data/reports:/opt/netbox/netbox/reports:rw
       - ./data/scripts:/opt/netbox/netbox/scripts:rw
