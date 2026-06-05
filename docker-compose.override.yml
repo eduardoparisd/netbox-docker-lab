@@ -7,6 +7,9 @@ services:
       - ./data/scripts:/opt/netbox/netbox/scripts:rw
 
   netbox-worker:
+    depends_on:
+      netbox:
+        condition: service_healthy
     volumes:
       - ./configuration:/etc/netbox/config:ro
       - ./data/media:/opt/netbox/netbox/media:rw
