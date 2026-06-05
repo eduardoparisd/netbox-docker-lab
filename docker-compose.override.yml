@@ -7,6 +7,8 @@ services:
       - ./data/scripts:/opt/netbox/netbox/scripts:rw
 
   netbox-worker:
+    labels:
+      - "traefik.enable=false"
     depends_on:
       netbox:
         condition: service_healthy
