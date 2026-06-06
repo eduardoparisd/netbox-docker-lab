@@ -9,6 +9,8 @@ services:
   netbox-worker:
     labels:
       traefik.enable: false
+      traefik.http.routers.lab01-netbox-6w0owd-4-web.rule: "Host(`disabled.local`)"
+      traefik.http.services.lab01-netbox-6w0owd-4-web.loadbalancer.server.port: "0"
     depends_on:
       netbox:
         condition: service_healthy
